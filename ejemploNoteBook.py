@@ -34,6 +34,11 @@ class Application:
         self.entry1.grid(column=0,row=1)
 
         self.cuaderno1.grid(column=0,row=0)
+        w = 600
+        h = 250
+        x = (self.ventana1.winfo_screenwidth() /2) - (w /2)
+        y = (self.ventana1.winfo_screenheight() /2) - (w /2)
+        self.ventana1.geometry('%dx%d+%d+%d' % (w,h,x,y))
         self.ventana1.mainloop()
 
 aplication1 = Application()
