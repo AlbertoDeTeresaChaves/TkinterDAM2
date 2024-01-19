@@ -13,8 +13,16 @@ class FormularioSocio:
         self.Insertar()
         self.consultarSocio()
         self.listado_completo()
-        
+        self.borrado()
+
         self.cuaderno.grid(column=0,row=0,padx=10,pady=10)
+        self.ventana.resizable(False,False)
+        self.ventana.configure(background="gray")
+        w = 525
+        h = 400
+        x = (self.ventana.winfo_screenwidth() /2) - (w /2)
+        y = (self.ventana.winfo_screenheight() /2) - (w /2)
+        self.ventana.geometry('%dx%d+%d+%d' % (w,h,x,y))
         self.ventana.mainloop()
 
     def Insertar(self):
@@ -168,5 +176,32 @@ class FormularioSocio:
                                               "\nLocalidad:"+(fila[4])+
                                               "\n\n")
     
+    def borrado(self):
+        self.pagina4 = ttk.Frame(self.cuaderno)
+        self.cuaderno.add(self.pagina4,text="Borrado de Socio")
+
+        self.labelframe4=ttk.LabelFrame(self.pagina4,text="Socio")
+        self.labelframe4.grid(column=0,row=0,padx=5,pady=10)
+
+        self.label11=ttk.Label(self.labelframe4,text="SocioID")
+        self.label11.grid(column=0,row=0,padx=4,pady=4)
+
+        self.codigoborra=tk.IntVar()
+        self.entryborra=ttk.Entry(self.labelframe4,textvariable=self.codigoborra,text="")
+        self.entryborra.grid(column=1,row=0,padx=10,pady=10)
+
+        self.botonborrar=ttk.Button(self.labelframe4,text="Borrar",command=self.borrar)
+        self.botonborrar.grid(column=1,row=1,padx=4,pady=4)
+
+    def borrar(self):
+        obtenerID=(self.entryborra.get(),)
+        respuesta =self.socio.borrar_socio(obtenerID)
+        if respuesta ==1:
+            mb.showinfo("Borrado","Socio borrado")
+            self.entryborra.set("")
+        else:
+            mb.showerror("Erro","No existe ningun Socio con esa ID")
+
+
 app=FormularioSocio()
 
