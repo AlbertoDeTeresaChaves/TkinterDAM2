@@ -40,7 +40,7 @@ class Temperaturas:
         self.botonmenos.grid(column=3,row=0,padx=4,pady=4)
 
         #==============================FARENHEIT====================================
-        self.farenheit_label =ttk.Label(self.ventana,text="Farenheit",background="#70A3CC",font="20")
+        self.farenheit_label =ttk.Label(self.ventana,text="Fahrenheit",background="#70A3CC",font="20")
         self.farenheit_label.grid(column=0,row=1,padx=4)
         self.farenheit_valor=tk.DoubleVar()
         self.farenheit_entry= ttk.Entry(self.ventana,textvariable=self.farenheit_valor,width=15)
