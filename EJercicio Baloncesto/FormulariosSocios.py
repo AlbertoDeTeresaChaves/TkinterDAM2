@@ -276,9 +276,14 @@ class FormularioSocio:
         datos=(self.nombre3.get(),self.estatura3.get(),self.edad3.get(),self.localidad3.get(),self.socioID3.get())
         respuesta =self.socio.modificar(datos)
         if respuesta ==1:
+            self.socioID3.set("")
+            self.nombre3.set("")
+            self.estatura3.set("")
+            self.edad3.set("")
+            self.localidad3.set("")
             mb.showinfo("Aviso","Socio Actualizado")
         else:
             mb.showerror("Error","Imposible actualizarlo")
-            
+
 app=FormularioSocio()
 
