@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox as mb
-from tkinter import PhotoImage
 import convertir as cv
 
 class Temperaturas:
