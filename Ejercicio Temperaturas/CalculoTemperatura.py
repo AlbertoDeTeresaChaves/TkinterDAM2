@@ -1,2 +1,0 @@
-class Calculos:
-    print("Hola")
