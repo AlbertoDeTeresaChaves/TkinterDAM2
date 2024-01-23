@@ -18,7 +18,7 @@ class Contenido:
         except Exception as e:
             n = 0
         self.combobox1.current(n)
-        
+
         ttk.Label(ventana,text="Segundo numero: ").grid(column=0,row=2,padx=5,pady=5)
         self.numero2=tk.IntVar()
         self.numero2entry=ttk.Entry(ventana,width=10,textvariable=self.numero2)
@@ -34,10 +34,7 @@ class Contenido:
     def calculo(self):
         n=eval(str(self.numero1.get())+self.combobox1.get()+str(self.numero2.get()))
         self.label1.config(text=str(n))
-
-        
-        
-        
+  
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
