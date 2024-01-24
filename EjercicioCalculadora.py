@@ -7,6 +7,8 @@ class Contenido:
         self.numero1=tk.IntVar()
         self.numero1entry=ttk.Entry(ventana,width=10,textvariable=self.numero1)
         self.numero1entry.grid(column=1,row=0)
+        self.numero1entry.bind("<Return>",self.calculo)
+        self.numero1entry.bind("<FocusOut>",self.calculo)
 
         self.label2=ttk.Label(ventana,text="Operacion: ").grid(column=0,row=1,padx=5,pady=5)
         self.operador=tk.StringVar()
@@ -18,11 +20,14 @@ class Contenido:
         except Exception as e:
             n = 0
         self.combobox1.current(n)
+        self.combobox1.bind("<<ComboboxSelected>>",self.calculo)
 
         ttk.Label(ventana,text="Segundo numero: ").grid(column=0,row=2,padx=5,pady=5)
         self.numero2=tk.IntVar()
         self.numero2entry=ttk.Entry(ventana,width=10,textvariable=self.numero2)
         self.numero2entry.grid(column=1,row=2)
+        self.numero2entry.bind("<Return>",self.calculo)
+        self.numero2entry.bind("<FocusOut>",self.calculo)
 
         self.boton1=tk.Button(ventana,text="Calcular",command=self.calculo )
         self.boton1.grid(column=0,row=3)
@@ -31,7 +36,7 @@ class Contenido:
 
         app.mainloop()
 
-    def calculo(self):
+    def calculo(self,*args):
         n=eval(str(self.numero1.get())+self.combobox1.get()+str(self.numero2.get()))
         self.label1.config(text=str(n))
   
