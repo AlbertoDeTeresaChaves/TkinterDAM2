@@ -1,23 +1,21 @@
-import tkinter as tk
-from tkinter import ttk
+from tkinter import *
 from tkinter import messagebox as mb
 import random
 
 class Aplicacion:
-    def __init__(self):
-        self.ventana1=tk.Tk()
-        self.label1=ttk.Label(self.ventana1, text="Seleccione la cantidad de bultos:")
+    def __init__(self,ventana):
+        self.label1=Label(ventana, text="Seleccione la cantidad de bultos:")
         self.label1.grid(column=0, row=0, padx=10, pady=10)
-        self.spinbox1=ttk.Spinbox(self.ventana1, from_=0, to=100, width=10, state='readonly')        
-        self.spinbox1.set(0)        
+        self.spinbox1=Spinbox(ventana, from_=0, to=100, width=10, state='readonly')            
         self.spinbox1.grid(column=1, row=0, padx=10, pady=10)
-        self.boton1=ttk.Button(self.ventana1, text="Sortear", command=self.sortear)
+        self.spinbox1.bind("<Button>",self.sortear)
+        self.boton1=Button(ventana, text="Sortear", command=self.sortear)
         self.boton1.grid(column=0, row=1, padx=10, pady=10)
-        self.label2=ttk.Label(self.ventana1, text="", width=20)
+        self.label2=Label(ventana, text="", width=20)
         self.label2.grid(column=1, row=1, padx=10, pady=10)
-        self.ventana1.mainloop()
+        
 
-    def sortear(self):
+    def sortear(self,*args):
         if int(self.spinbox1.get())==0:
             mb.showerror("Cuidado","Debe seleccionar un valor distinto a cero en bultos")
         else:
@@ -28,5 +26,17 @@ class Aplicacion:
             else:
                 self.label2.configure(text="No se revisan")
                 self.label2.configure(background="green")
-
-aplicacion1=Aplicacion() 
+    
+class App(Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("SpinBox")
+        w = 400
+        h = 200
+        x = (self.winfo_screenwidth() / 2) - (w / 2)
+        y = (self.winfo_screenheight() / 2) - (h / 2)
+        self.geometry('%dx%d+%d+%d' % (w,h,x,y))
+        self.resizable(False,False)
+app=App()
+Aplicacion(app)
+app.mainloop()
