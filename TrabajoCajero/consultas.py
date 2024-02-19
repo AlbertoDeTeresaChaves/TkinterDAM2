@@ -9,3 +9,5 @@ class Banco:
         cursor.execute(SQL_SELECT)
         vuelta=cursor.fetchall()
         return vuelta
+    
+    
